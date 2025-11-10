@@ -111,6 +111,54 @@ button:disabled {
   border-radius: 4px;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.test-cases-block {
+  margin-top: 8px;
+}
+
+.section-title {
+  margin: 0;
+}
+
+.copy-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.copy-btn {
+  padding: 6px 12px;
+  font-size: 16px; /* Match main button font size */
+  line-height: 1.2;
+  background-color: #FFFF00;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.copy-btn:hover {
+  background-color: #E6C200; /* dark yellow on hover */
+}
+
+.copy-btn.copied {
+  background-color: #16a34a; /* Green when copied */
+}
+
+/* Disclaimer under inputs */
+.disclaimer-text {
+  color: #dc3545; /* red */
+  font-size: 1.1em;
+  margin-top: 6px;
+  font-weight: 700;
+}
+
 .spinner {
   margin: 20px auto;
   border: 4px solid #eee;
