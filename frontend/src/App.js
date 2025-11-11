@@ -114,17 +114,10 @@ function App() {
 <div className="header-content">
 <img 
             src={imageUrl} 
-            alt="AI-Avengers Logo" 
+            alt="Quality Assistant Agent Logo" 
             className="header-logo"
-            onError={(e) => {
-              console.error('Image failed to load:', e);
-              console.error('Attempted src:', e.target.src);
-              e.target.style.display = 'none';
-            }}
-            onLoad={() => console.log('Image loaded successfully')}
           />
 <h1>Quality Assistant Agent</h1>
-
 <h2>Driving Intelligent Test Automation</h2>
 </div>
 </header>
