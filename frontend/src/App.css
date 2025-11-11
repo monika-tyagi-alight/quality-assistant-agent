@@ -19,7 +19,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .App-header {
  background: #1a2332;
   color: white;
@@ -27,7 +26,6 @@ body {
   border-radius: 8px 8px 0 0;
   margin-bottom: 20px;
   min-height: 100px;
-  height: 250px;
 }
 
 .header-content {
@@ -37,12 +35,12 @@ body {
   gap: 10px;
   min-height: 80px;
   width: 100%;
+  padding-left: 30%;
 }
 
 .header-logo {
   height: 250px;
-  width: auto;
-  max-width: 150px;
+  width: 250px;
   object-fit: contain;
   border-radius: 4px;
   display: block;
@@ -73,6 +71,7 @@ body {
   text-align: left;
   width: 100%;
 }
+
 .App-main {
   flex: 1;
   display: flex;

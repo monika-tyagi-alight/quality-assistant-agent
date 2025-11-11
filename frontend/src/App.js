@@ -187,7 +187,7 @@ function App() {
 </div>
 
 <div className="input-section">
-<h2>Input Software Details</h2>
+<h2>Enter Requirements</h2>
 <div className="input-group">
 <label htmlFor="requirements">Software Requirements:</label>
 <textarea id="requirements" rows="5" value={requirements} onChange={handleRequirementsChange} maxLength={MAX_REQ_LEN}></textarea>
@@ -208,7 +208,7 @@ function App() {
 <div className="disclaimer-text">Do not enter personal or sensitive information. Use only technical or system-related data</div>
 <button onClick={handleStartStlc} disabled={loading || !requirements}>
 
-            {loading ? 'Running STLC...' : 'Start Process'}
+            {loading ? 'Running...' : 'Start Process'}
 </button>
 </div>
  
@@ -223,7 +223,7 @@ function App() {
         {stlcResult && (
 <div className="output-section">
 <div className="section-header">
-  <h2>STLC Results</h2>
+  <h1>Software Testing Lifecycle Results</h1>
   <button
     className={`copy-btn ${copiedAll ? 'copied' : ''}`}
     onClick={() => {
