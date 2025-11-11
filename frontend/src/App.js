@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import './App.css';
+import imageUrl from 'url:./image.png';
  
 function App() {
 
@@ -17,8 +17,36 @@ function App() {
   const [stlcResult, setStlcResult] = useState(null);
 
   const [error, setError] = useState(null);
+
+  const [isRequirementsOpen, setIsRequirementsOpen] = useState(true);
+
+  const [isUserStoriesOpen, setIsUserStoriesOpen] = useState(false);
+
+  const [isCodeDiffsOpen, setIsCodeDiffsOpen] = useState(false);
+
+  const [isPreviousTestResultsOpen, setIsPreviousTestResultsOpen] = useState(false);
  
   const backendUrl = 'http://localhost:8000';
+
+  // Handle file upload for Software Requirements
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Check if it's a text file
+      if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setRequirements(e.target.result);
+        };
+        reader.onerror = () => {
+          setError('Failed to read file. Please try again.');
+        };
+        reader.readAsText(file);
+      } else {
+        setError('Please upload a valid text file (.txt)');
+      }
+    }
+  };
  
   const handleStartStlc = async () => {
 
@@ -91,26 +119,107 @@ function App() {
   return (
 <div className="App">
 <header className="App-header">
-<h1>AI-Powered STLC Orchestrator</h1>
+<div className="header-content">
+<img 
+            src={imageUrl} 
+            alt="Quality Assistant Agent Logo" 
+            className="header-logo"
+          />
+<div className="header-text">
+<h1>Quality Assistant Agent</h1>
+<h2>Driving Intelligent Test Automation</h2>
+</div>
+</div>
 </header>
 <main className="App-main">
 <div className="input-section">
 <h2>Input Software Details</h2>
-<div className="input-group">
-<label htmlFor="requirements">Software Requirements:</label>
-<textarea id="requirements" rows="5" value={requirements} onChange={(e) => setRequirements(e.target.value)}></textarea>
+<div className="accordion-item">
+<div 
+            className="accordion-header" 
+            onClick={() => setIsRequirementsOpen(!isRequirementsOpen)}
+          >
+<span>Requirements</span>
+<span className="accordion-icon">{isRequirementsOpen ? '−' : '+'}</span>
 </div>
+          {isRequirementsOpen && (
+<div className="accordion-content">
+<div className="input-group">
+<label htmlFor="requirements">Enter a requirement, and the Quality Assistant Agent will generate relevant test cases, along with additional analysis outputs.</label>
+
+<textarea 
+                  id="requirements" 
+                  rows="5" 
+                  value={requirements} 
+                  onChange={(e) => setRequirements(e.target.value)}
+                  placeholder=" Requirements"
+                ></textarea>
+<div className="file-upload-container">
+<input 
+                      type="file" 
+                      id="fileUpload" 
+                      accept=".txt,text/plain" 
+                      onChange={handleFileUpload}
+                      style={{ marginBottom: '10px' }}
+                    />
+<label htmlFor="fileUpload" style={{ fontSize: '0.9em', color: '#666' }}>
+                      Upload a text file or type above
+</label>
+</div>
+</div>
+</div>
+          )}
+</div>
+<div className="accordion-item">
+<div 
+            className="accordion-header" 
+            onClick={() => setIsUserStoriesOpen(!isUserStoriesOpen)}
+          >
+<span>User Stories (Optional)</span>
+<span className="accordion-icon">{isUserStoriesOpen ? '−' : '+'}</span>
+</div>
+          {isUserStoriesOpen && (
+<div className="accordion-content">
 <div className="input-group">
 <label htmlFor="userStories">User Stories (Optional):</label>
 <textarea id="userStories" rows="3" value={userStories} onChange={(e) => setUserStories(e.target.value)}></textarea>
 </div>
+</div>
+          )}
+</div>
+<div className="accordion-item">
+<div 
+            className="accordion-header" 
+            onClick={() => setIsCodeDiffsOpen(!isCodeDiffsOpen)}
+          >
+<span>Code Diffs (Optional)</span>
+<span className="accordion-icon">{isCodeDiffsOpen ? '−' : '+'}</span>
+</div>
+          {isCodeDiffsOpen && (
+<div className="accordion-content">
 <div className="input-group">
 <label htmlFor="codeDiffs">Code Diffs (Optional):</label>
 <textarea id="codeDiffs" rows="4" value={codeDiffs} onChange={(e) => setCodeDiffs(e.target.value)}></textarea>
 </div>
+</div>
+          )}
+</div>
+<div className="accordion-item">
+<div 
+            className="accordion-header" 
+            onClick={() => setIsPreviousTestResultsOpen(!isPreviousTestResultsOpen)}
+          >
+<span>Previous Test Results (Optional)</span>
+<span className="accordion-icon">{isPreviousTestResultsOpen ? '−' : '+'}</span>
+</div>
+          {isPreviousTestResultsOpen && (
+<div className="accordion-content">
 <div className="input-group">
 <label htmlFor="previousTestResults">Previous Test Results (Optional):</label>
 <textarea id="previousTestResults" rows="3" value={previousTestResults} onChange={(e) => setPreviousTestResults(e.target.value)}></textarea>
+</div>
+</div>
+          )}
 </div>
 <button onClick={handleStartStlc} disabled={loading || !requirements}>
 

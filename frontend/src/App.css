@@ -4,17 +4,62 @@
   margin: 0 auto;
   padding: 20px;
   max-width: 1200px;
-  background-color: #f4f7f6;
+  background: #1a2332;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .App-header {
-  background-color: #282c34;
+ background: #1a2332;
   color: white;
-  padding: 20px;
+  padding: 20px 40px;
   border-radius: 8px 8px 0 0;
   margin-bottom: 20px;
+  min-height: 100px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 80px;
+  width: 100%;
+}
+
+.header-logo {
+  height: 250px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 50px;
+  color: white;
+  text-align: left;
+  width: 100%;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: normal;
+  color: #FFD700;
+  text-align: left;
+  width: 100%;
 }
 
 .App-main {
@@ -30,6 +75,55 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   text-align: left;
+}
+
+.accordion-item {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: #282c34;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.accordion-header:hover {
+  background-color: #e9ecef;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  padding: 20px;
+  background-color: #ffffff;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
 }
 
 .input-group {
