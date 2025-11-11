@@ -29,6 +29,14 @@ function App() {
     // Enforce max length defensively even with maxLength attribute
     setRequirements(val.length > MAX_REQ_LEN ? val.slice(0, MAX_REQ_LEN) : val);
   };
+
+  const handleFeatureClick = () => {
+    const reqTextarea = document.getElementById('requirements');
+    if (reqTextarea) {
+      reqTextarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      reqTextarea.focus();
+    }
+  };
  
   const handleStartStlc = async () => {
 
@@ -125,6 +133,47 @@ function App() {
 <h1>AI-Powered STLC Orchestrator</h1>
 </header>
 <main className="App-main">
+
+<div className="welcome-banner">
+<div className="welcome-header">
+<div className="bot-icon">🤖</div>
+<div className="welcome-title">
+<h3>Welcome to Quality Assistant Agent!</h3>
+<p className="subtitle">Your AI-Powered STLC Companion</p>
+</div>
+</div>
+<p className="welcome-description">
+            Accelerate your testing lifecycle with intelligent test generation, data creation, automation, 
+            and comprehensive analysis—all powered by advanced AI.
+</p>
+<div className="feature-grid">
+<div className="feature-box" onClick={handleFeatureClick}>
+<span className="feature-icon">🧪</span>
+<span className="feature-text">Test Cases</span>
+</div>
+<div className="feature-box" onClick={handleFeatureClick}>
+<span className="feature-icon">📊</span>
+<span className="feature-text">Test Data</span>
+</div>
+<div className="feature-box" onClick={handleFeatureClick}>
+<span className="feature-icon">⚙️</span>
+<span className="feature-text">Automation</span>
+</div>
+<div className="feature-box" onClick={handleFeatureClick}>
+<span className="feature-icon">🔍</span>
+<span className="feature-text">Impact Analysis</span>
+</div>
+<div className="feature-box" onClick={handleFeatureClick}>
+<span className="feature-icon">🐛</span>
+<span className="feature-text">Bug Reports</span>
+</div>
+<div className="feature-box" onClick={handleFeatureClick}>
+<span className="feature-icon">▶️</span>
+<span className="feature-text">Test Execution</span>
+</div>
+</div>
+</div>
+
 <div className="input-section">
 <h2>Input Software Details</h2>
 <div className="input-group">
