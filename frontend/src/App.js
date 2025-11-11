@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import './App.css';
+import imageUrl from 'url:./image.png';
+
  
 function App() {
 
@@ -116,7 +118,7 @@ function App() {
             onClick={async () => {
               await navigator.clipboard.writeText(value || '');
               setCopiedMap((prev) => ({ ...prev, [label]: true }));
-              setTimeout(() => setCopiedMap((prev) => ({ ...prev, [label]: false })), 1000);
+              setTimeout(() => setCopiedMap((prev) => ({ ...prev, [label]: false })), 2000);
             }}
             className={`copy-btn ${copiedMap[label] ? 'copied' : ''}`}
           >
@@ -130,7 +132,17 @@ function App() {
   return (
 <div className="App">
 <header className="App-header">
-<h1>AI-Powered STLC Orchestrator</h1>
+<div className="header-content">
+<img 
+            src={imageUrl} 
+            alt="Quality Assistant Agent Logo" 
+            className="header-logo"
+          />
+<div className="header-text">
+<h1>Quality Assistant Agent</h1>
+<h2>Driving Intelligent Test Automation</h2>
+</div>
+</div>
 </header>
 <main className="App-main">
 
@@ -193,10 +205,10 @@ function App() {
 <label htmlFor="previousTestResults">Previous Test Results (Optional):</label>
 <textarea id="previousTestResults" rows="3" value={previousTestResults} onChange={(e) => setPreviousTestResults(e.target.value)}></textarea>
 </div>
-<div className="disclaimer-text">Do not enter P11 or sensitive data.</div>
+<div className="disclaimer-text">Do not enter personal or sensitive information. Use only technical or system-related data</div>
 <button onClick={handleStartStlc} disabled={loading || !requirements}>
 
-            {loading ? 'Running STLC...' : 'Start STLC Process'}
+            {loading ? 'Running STLC...' : 'Start Process'}
 </button>
 </div>
  
@@ -233,12 +245,12 @@ function App() {
       if (all) {
         navigator.clipboard.writeText(all).then(() => {
           setCopiedAll(true);
-          setTimeout(() => setCopiedAll(false), 1000);
+          setTimeout(() => setCopiedAll(false), 2000);
         });
       }
     }}
   >
-    {copiedAll ? 'Copied!' : 'Copy All'}
+    {copiedAll ? 'Copied All!' : 'Copy All Results'}
   </button>
 </div>
  
