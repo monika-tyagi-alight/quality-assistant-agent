@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import './App.css';
+import imageUrl from 'url:./image.png';
  
 function App() {
 
@@ -19,6 +19,26 @@ function App() {
   const [error, setError] = useState(null);
  
   const backendUrl = 'http://localhost:8000';
+
+  // Handle file upload for Software Requirements
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Check if it's a text file
+      if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setRequirements(e.target.result);
+        };
+        reader.onerror = () => {
+          setError('Failed to read file. Please try again.');
+        };
+        reader.readAsText(file);
+      } else {
+        setError('Please upload a valid text file (.txt)');
+      }
+    }
+  };
  
   const handleStartStlc = async () => {
 
@@ -91,7 +111,22 @@ function App() {
   return (
 <div className="App">
 <header className="App-header">
-<h1>AI-Powered STLC Orchestrator</h1>
+<div className="header-content">
+<img 
+            src={imageUrl} 
+            alt="AI-Avengers Logo" 
+            className="header-logo"
+            onError={(e) => {
+              console.error('Image failed to load:', e);
+              console.error('Attempted src:', e.target.src);
+              e.target.style.display = 'none';
+            }}
+            onLoad={() => console.log('Image loaded successfully')}
+          />
+<h1>Quality Assistant Agent</h1>
+
+<h2>Driving Intelligent Test Automation</h2>
+</div>
 </header>
 <main className="App-main">
 <div className="input-section">
@@ -99,6 +134,18 @@ function App() {
 <div className="input-group">
 <label htmlFor="requirements">Software Requirements:</label>
 <textarea id="requirements" rows="5" value={requirements} onChange={(e) => setRequirements(e.target.value)}></textarea>
+<div className="file-upload-container">
+<input 
+                type="file" 
+                id="fileUpload" 
+                accept=".txt,text/plain" 
+                onChange={handleFileUpload}
+                style={{ marginBottom: '10px' }}
+              />
+<label htmlFor="fileUpload" style={{ fontSize: '0.9em', color: '#666' }}>
+                Upload a text file or type above
+</label>
+</div>
 </div>
 <div className="input-group">
 <label htmlFor="userStories">User Stories (Optional):</label>
