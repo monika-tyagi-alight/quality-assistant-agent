@@ -1,7 +1,19 @@
+
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0;}
+
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+  background: #1a2332;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
 }
 
 body {
@@ -40,7 +52,8 @@ body {
 
 .header-logo {
   height: 250px;
-  width: 250px;
+  width: auto;
+  max-width: 150px;
   object-fit: contain;
   border-radius: 4px;
   display: block;
@@ -269,6 +282,55 @@ body {
   line-height: 1.7;
   margin: 0;
   text-align: left;
+}
+
+.accordion-item {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: #282c34;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.accordion-header:hover {
+  background-color: #e9ecef;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  padding: 20px;
+  background-color: #ffffff;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
 }
 
 .input-group {
